@@ -1,6 +1,6 @@
-import Models.Editora;
-import Services.EditoraService;
-import Services.ProdutoService;
+import Models.Editor;
+import Services.EditorService;
+import Services.ProductService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private static boolean TarefaProduto() throws SQLException {
-        List<Editora> editoras = new ArrayList<>();
-        boolean istrue = true;
-       do {
+    private static void ProductMenu() throws SQLException {
+        List<Editor> editors = new ArrayList<>();
+        boolean isTrue = true;
             System.out.println(" - - - - ARMAZEM ROI - - - -");
+       do {
             System.out.println("===============================");
             System.out.println("1. Listar todos Produtos.");
             System.out.println("2. Pesquisar pelo Nome do produto.");
@@ -23,16 +23,16 @@ public class Main {
             System.out.println("5. Eliminar produto. ");
             System.out.println("0. Voltar. ");
             System.out.println("Selecciona a opcao que deseja Seguir ");
-            int op = Integer.parseInt(SCANNER.nextLine());
+            byte op = SCANNER.nextByte();
             switch (op) {
-                case 1 -> ProdutoService.findAll();
-                case 2 -> ProdutoService.findByName();
-                case 3 -> ProdutoService.save();
-                case 4 -> ProdutoService.update();
-                case 5 -> ProdutoService.delete();
+                case 1 -> ProductService.findAll();
+                case 2 -> ProductService.findByName();
+                case 3 -> ProductService.save();
+                case 4 -> ProductService.update();
+                case 5 -> ProductService.delete();
                 case 0 -> {
-                    istrue = false;
-                    return false;
+                    isTrue = false;
+                    return;
                 }
             }
             continue;
@@ -40,11 +40,11 @@ public class Main {
     }
 
 
-    private static boolean BibliotecaRoi() throws SQLException {
-        List<Editora> editoras = new ArrayList<>();
+    private static boolean LibraryMethod() throws SQLException {
+        List<Editor> editors = new ArrayList<>();
         boolean bool = true;
-        do {
                 System.out.println(" - - - - Biblioteca ROI - - - -");
+        do {
                 System.out.println("===============================");
                 System.out.println("1. Listar todas Editoras.");
                 System.out.println("2. Pesquisar pelo Nome da editora.");
@@ -55,11 +55,11 @@ public class Main {
                 System.out.println("Selecciona a opcao que deseja Seguir ");
                 int op = Integer.parseInt(SCANNER.nextLine());
                 switch (op) {
-                    case 1 -> EditoraService.findAll();
-                    case 2 -> EditoraService.findByName();
-                    case 3 -> EditoraService.save();
-                    case 4 -> EditoraService.update();
-                    case 5 -> EditoraService.delete();
+                    case 1 -> EditorService.findAll();
+                    case 2 -> EditorService.findByName();
+                    case 3 -> EditorService.save();
+                    case 4 -> EditorService.update();
+                    case 5 -> EditorService.delete();
                     case 0 -> {
                         return false;
                     }
@@ -80,8 +80,8 @@ public class Main {
                 System.out.println("0. SAIR");
                 int op = Integer.parseInt(SCANNER.nextLine());
                 switch (op) {
-                    case 1 -> TarefaProduto();
-                    case 2 -> BibliotecaRoi();
+                    case 1 -> ProductMenu();
+                    case 2 -> LibraryMethod();
                     case 0 -> {
                         return false;
                     }

@@ -13,19 +13,19 @@ public class Product {
     }
 
 
-    public Product(String name, String description, double venda, Double purchasePrice, int quantest) {
+    public Product(String name, String description, double sellingPrice, Double purchasePrice, int quantest) {
         this.name = name;
         this.description = description;
-        this.sellingPrice = venda;
+        this.sellingPrice = sellingPrice;
         this.purchasePrice = purchasePrice;
         this.quantity = quantest;
     }
 
-    public Product(int id, String name, String description, double venda, Double purchasePrice, int quantest) {
+    public Product(int id, String name, String description, double sellingPrice, Double purchasePrice, int quantest) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.sellingPrice = venda;
+        this.sellingPrice = sellingPrice;
         this.purchasePrice = purchasePrice;
         this.quantity = quantest;
     }

@@ -1,14 +1,15 @@
 package Services;
 
 import Models.Product;
-import repository.EditoraRepository;
+import repository.EditorRepository;
 import repository.ProductRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProdutoService {
+
+public class ProductService {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void findByName() {
@@ -16,7 +17,7 @@ public class ProdutoService {
         String nome = SCANNER.next();
         List<Product> produtos = ProductRepository.findByName(nome);
         if (produtos.isEmpty()) {
-            System.out.println("= = = = = = = = = = = = = =\n| Produtos nao Encontrados.|\n= = = = = = = = = = = = = =");
+            System.out.println("= = = = = = = = = =\n|  Sem  Produtos.  |\n= = = = = = = = = =");
             return;
         }
         System.out.println("Codigo | Nome do Produto | Descricao do produto | P. Venda |Custo Compra | Quantidade");
@@ -32,8 +33,9 @@ public class ProdutoService {
             return;
         }
         System.out.println("= = = = = Lista de Produtos = = = = =");
+        System.out.println("Codigo | Nome do Produto | Descricao | Preco de Venda | Custo de Compra | Quantidade");
         for (Product produto : produtos) {
-            System.out.printf("[%d] - %s | %s | %.2f | %.2f | %d\n",
+            System.out.printf("[%d] - %s | %s | %.2f | %.2f | %d unidades\n",
                     produto.getId(),
                     produto.getName(),
                     produto.getDescription(),
@@ -44,19 +46,19 @@ public class ProdutoService {
         }
     }
 
-    public static void save() {
+    public static void save() throws SQLException {
         System.out.println("Insira o nome da produto.");
-        String nome = SCANNER.nextLine();
+        String name = SCANNER.next();
         System.out.println("Insira a descricao do produto.");
-        String descricao = SCANNER.nextLine();
+        String description = SCANNER.next();
         System.out.println("Insira o o custo de venda do produto.");
-        double venda = SCANNER.nextInt();
-        System.out.println("Insira o Custo do produto.");
-        double custo = SCANNER.nextDouble();
+        double sellingPrice = SCANNER.nextInt();
+        System.out.println("Insira o Custo do produto (Valor de Compra do stock).");
+        double purchasePrice = SCANNER.nextDouble();
         System.out.println("Insira a quantidade do estoque.");
-        int quantest = SCANNER.nextInt();
+        int quantity = SCANNER.nextInt();
 
-        Product product = new Product(nome, descricao, venda, custo, quantest);
+        Product product = new Product(name, description, sellingPrice, purchasePrice, quantity);
         ProductRepository.save(product);
     }
 
@@ -65,19 +67,26 @@ public class ProdutoService {
         System.out.println("Insira o Codigo da produto");
         Product produto = ProductRepository.findByid(SCANNER.nextInt());
         System.out.println("Digite o novo nome ou antigo:");
-        String nome = SCANNER.next();
+        String nome = SCANNER.nextLine();
         System.out.println("Digite o novo descricao ou antigo:");
-        String descricao = SCANNER.next();
+        String description = SCANNER.nextLine();
         System.out.println("Insira novo o custo de venda do produto.");
-        double venda = SCANNER.nextInt();
+        double sellingPrice = SCANNER.nextInt();
         System.out.println("Insira o novo Custo do produto.");
         double custo = SCANNER.nextDouble();
         System.out.println("Insira a nova quantidade do estoque.");
         int quantest = SCANNER.nextInt();
+
+
+
         produto.setId(produto.getId());
+        if(!nome.isEmpty()){
         produto.setName(nome);
-        produto.setDescription(descricao);
-        produto.setSellingPrice(venda);
+        }
+        if(!description.isEmpty()) {
+            produto.setDescription(description);
+        }
+        produto.setSellingPrice(sellingPrice);
         produto.setPurchasePrice(custo);
         produto.setQuantity(quantest);
 
@@ -94,7 +103,7 @@ public class ProdutoService {
         System.out.print("Tem certeza que deseja eliminar este produto ?? (S)im / (N)ao");
         String escolha = (SCANNER.nextLine());
         if (escolha.toLowerCase().startsWith("s".toLowerCase())) {
-            EditoraRepository.delete(id);
+            EditorRepository.delete(id);
         }
     }
 }

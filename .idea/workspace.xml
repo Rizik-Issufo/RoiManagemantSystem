@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88584c29-39e0-4c9e-96b9-511e4ffa997b" name="Changes" comment="" />
+    <list default="true" id="88584c29-39e0-4c9e-96b9-511e4ffa997b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConnectionDb/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConnectionDb/ConnectionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Editora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Editor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/EditoraService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/EditorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/EditoraRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/EditorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ProductRepository.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,11 +93,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/repository/EditoraRepository.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

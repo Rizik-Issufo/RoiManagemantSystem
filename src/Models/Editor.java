@@ -2,26 +2,26 @@ package Models;
 
 import java.io.Serializable;
 
-public class Editora implements Serializable {
+public class Editor implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long idEditora;
+    private Long idEditor;
     private String name;
     private String email;
 
-    public Editora() {
+    public Editor() {
     }
 
-    public Editora(String name, String email) {
+    public Editor(String name, String email) {
         this.name = name;
         this.email = email;
     }
 // Gerar Getters e Setters
     public Long getIdEditora() {
-        return idEditora;
+        return idEditor;
     }
 
     public void setIdEditora(Long idEditora) {
-        this.idEditora = idEditora;
+        this.idEditor = idEditora;
     }
 
     public String getName() {

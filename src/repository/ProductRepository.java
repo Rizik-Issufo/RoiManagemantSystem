@@ -2,7 +2,6 @@ package repository;
 
 import ConnectionDb.ConnectionFactory;
 import Models.Product;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class ProductRepository {
 
 
         public static List<Product> findByName(String name) {
-            String sql = "SELECT * FROM `Task.product` WHERE `nome` LIKE %%?%%;";
+            String sql = "SELECT * FROM `product` WHERE `nome` LIKE %%?%%;";
             List<Product> products = new ArrayList<>();
             try (Connection conn = ConnectionFactory.getConnectionTask();
                  PreparedStatement ps = findByNamePs(conn, name);
@@ -40,7 +39,7 @@ public class ProductRepository {
         }
 
         private static PreparedStatement findByNamePs(Connection conn, String name) throws SQLException {
-            String sql = "SELECT * FROM Task.product WHERE `name` like ?;";
+            String sql = "SELECT * FROM product WHERE `name` like ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, String.format("%%%s%%", name));
             return ps;
@@ -68,22 +67,23 @@ public class ProductRepository {
         }
 
         private static PreparedStatement findByIdPs(Connection conn, Integer id) throws SQLException {
-            String sql = "SELECT * FROM Task.product WHERE id  = ?;";
+            String sql = "SELECT * FROM product WHERE id  = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             return ps;
         }
 
-        public static void save(Product product) throws SQLException {
+        public static void save(Product product)  {
             try (Connection conn = ConnectionFactory.getConnectionTask();
                  PreparedStatement ps = savePs(conn, product)) {
                 ps.execute();
+                System.out.println("Operacao feita com sucesso !");
             } catch (SQLException e) {
-                Connection conn =  DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
-                PreparedStatement s = conn.prepareStatement(databaseTask);
-                s.execute();
-                save(product);
-//                throw new RuntimeException(e + " - Something Whrong Happened");
+//                Connection conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "1234");
+//                PreparedStatement s = conn.prepareStatement(databaseTask);
+//                s.execute();
+//                save(product);
+                throw new RuntimeException(e + " - Something Whrong Happened");
             }
         }
 
@@ -110,19 +110,20 @@ public class ProductRepository {
 
         }
         private static PreparedStatement updatePs(Connection conn, Product product) throws SQLException {
-            String sql = "UPDATE `Task`.`product` SET `name` = ?,`description` = ? ,`sellingPrice` = ?, `PurchasePrice` = ?, `quantity` = ? WHERE (`id` = ?);\n";
+            String sql = "UPDATE `product` SET `name` = ?,`description` = ? ,`sellingPrice` = ?, `purchasePrice` = ?, `quantity` = ? WHERE (`id` = ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, product.getName());
             ps.setString(2, product.getDescription());
             ps.setDouble(3, product.getSellingPrice());
             ps.setDouble(4, product.getPurchasePrice());
             ps.setInt(5, product.getQuantity());
+            ps.setInt(6, product.getId());
             return ps;
         }
 
-        public static void delete(int codigo) throws SQLException {
+        public static void delete(int id) throws SQLException {
             try (Connection conn = ConnectionFactory.getConnectionTask();
-                 PreparedStatement ps = deletePs(conn, codigo);
+                 PreparedStatement ps = deletePs(conn, id);
             ) {
                 ps.execute();
 
@@ -132,7 +133,7 @@ public class ProductRepository {
         }
 
         private static PreparedStatement deletePs(Connection conn, int id) throws SQLException {
-            String sql = "DELETE FROM `Task`.`product` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `product` WHERE (`id` = ?);";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
