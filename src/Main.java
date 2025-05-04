@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static int op;
 
     private static void ProductMenu() throws SQLException {
         List<Editor> editors = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Main {
             System.out.println("5. Eliminar produto. ");
             System.out.println("0. Voltar. ");
             System.out.println("Selecciona a opcao que deseja Seguir ");
-            byte op = SCANNER.nextByte();
+            op = SCANNER.nextByte();
             switch (op) {
                 case 1 -> ProductService.findAll();
                 case 2 -> ProductService.findByName();
@@ -53,7 +54,7 @@ public class Main {
                 System.out.println("5. Eliminar Editora. ");
                 System.out.println("0. Voltar. ");
                 System.out.println("Selecciona a opcao que deseja Seguir ");
-                int op = Integer.parseInt(SCANNER.nextLine());
+                op = SCANNER.nextInt();
                 switch (op) {
                     case 1 -> EditorService.findAll();
                     case 2 -> EditorService.findByName();
@@ -71,6 +72,7 @@ public class Main {
     }
 
     private static boolean mainMenu() throws SQLException {
+//        int op;
         boolean bool = true;
             do {
                 System.out.println(" - - - - SISTEMA ADMINISTRATIVO ROI - - - -");
@@ -78,7 +80,8 @@ public class Main {
                 System.out.println("1. SISTEMA DE GESTAO DE PRODUTOS.");
                 System.out.println("2. SISTEMA DE GESTAO DE BIBLIOTECA.");
                 System.out.println("0. SAIR");
-                int op = Integer.parseInt(SCANNER.nextLine());
+                op =SCANNER.nextInt();
+
                 switch (op) {
                     case 1 -> ProductMenu();
                     case 2 -> LibraryMethod();
@@ -90,7 +93,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws SQLException {
-        mainMenu();
+
+                mainMenu();
     }
 }
 

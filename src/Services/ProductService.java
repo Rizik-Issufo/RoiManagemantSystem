@@ -22,7 +22,7 @@ public class ProductService {
         }
         System.out.println("Codigo | Nome do Produto | Descricao do produto | P. Venda |Custo Compra | Quantidade");
         for (Product produto : produtos)
-            System.out.printf("[%d] - %s | %s | %.2f | %.2f | %d\n", produto.getId(), produto.getName(), produto.getDescription(), produto.getSellingPrice(), produto.getPurchasePrice(), produto.getQuantity());
+            System.out.printf("[%d] - %s | %s | %.2f mzn | %.2f mzn | %d\n", produto.getId(), produto.getName(), produto.getDescription(), produto.getSellingPrice(), produto.getPurchasePrice(), produto.getQuantity());
 
     }
 
@@ -35,7 +35,7 @@ public class ProductService {
         System.out.println("= = = = = Lista de Produtos = = = = =");
         System.out.println("Codigo | Nome do Produto | Descricao | Preco de Venda | Custo de Compra | Quantidade");
         for (Product produto : produtos) {
-            System.out.printf("[%d] - %s | %s | %.2f | %.2f | %d unidades\n",
+            System.out.printf("[%d] - %s | %s | %.2f mzn | %.2f mzn | %d unidades\n",
                     produto.getId(),
                     produto.getName(),
                     produto.getDescription(),
@@ -48,9 +48,9 @@ public class ProductService {
 
     public static void save() throws SQLException {
         System.out.println("Insira o nome da produto.");
-        String name = SCANNER.next();
+        String name = SCANNER.nextLine();
         System.out.println("Insira a descricao do produto.");
-        String description = SCANNER.next();
+        String description = SCANNER.nextLine();
         System.out.println("Insira o o custo de venda do produto.");
         double sellingPrice = SCANNER.nextInt();
         System.out.println("Insira o Custo do produto (Valor de Compra do stock).");
@@ -69,7 +69,7 @@ public class ProductService {
         System.out.println("Digite o novo nome ou antigo:");
         String nome = SCANNER.nextLine();
         System.out.println("Digite o novo descricao ou antigo:");
-        String description = SCANNER.nextLine();
+        String description = SCANNER.next();
         System.out.println("Insira novo o custo de venda do produto.");
         double sellingPrice = SCANNER.nextInt();
         System.out.println("Insira o novo Custo do produto.");

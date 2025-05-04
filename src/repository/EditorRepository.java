@@ -97,10 +97,11 @@ public class EditorRepository {
 
     }
     private static PreparedStatement updatePs(Connection conn, Editor editor) throws SQLException {
-        String sql = "UPDATE `editor` SET `name` = ?, `email` = ? WHERE (`idEditor` = ?);\n";
+        String sql = "UPDATE `editor` SET `name` = ?, `email` = ? WHERE `idEditor` = ?;\n";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, editor.getName());
-        ps.setString(1, editor.getEmail());
+        ps.setString(2, editor.getEmail());
+        ps.setString(3, editor.getIdEditora().toString());
         return ps;
     }
 
